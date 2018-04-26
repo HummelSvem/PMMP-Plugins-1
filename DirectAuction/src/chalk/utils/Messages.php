@@ -51,21 +51,21 @@ class Messages {
     /**
      * @return int
      */
-    public function getVersion(){
+    public function getVersion(): int{
         return $this->version;
     }
 
     /**
      * @return string
      */
-    public function getDefaultLanguage(){
+    public function getDefaultLanguage(): string{
         return $this->defaultLanguage;
     }
 
     /**
      * @return array
      */
-    public function getMessages(){
+    public function getMessages(): array{
         return $this->messages;
     }
 
@@ -75,7 +75,7 @@ class Messages {
      * @param string $language
      * @return null|string
      */
-    public function getMessage($key, $format = [], $language = ""){
+    public function getMessage(string $key, array $format = [], string $language = ""): string{
         if($language === ""){
             $language = $this->getDefaultLanguage();
         }

@@ -636,4 +636,3 @@ class DirectAuction extends PluginBase implements Listener {
 		}
 	}
 }
-?>

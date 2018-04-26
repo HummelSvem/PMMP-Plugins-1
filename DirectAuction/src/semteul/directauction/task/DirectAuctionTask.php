@@ -10,7 +10,7 @@ class DirectAuctionTask extends PluginTask {
 	function __construct(DirectAuction $owner) {
 		parent::__construct($owner);
 	}
-	public function onRun($currentTick) {
+	public function onRun(int $currentTick) {
 		$owner = $this->getOwner();
 		$owner->auctionTick();
 	}

@@ -42,7 +42,7 @@ class InventoryManager {
 	
 	
 	//add item inventory or drop it
-	public function addItem($item) {
+	public function addItem(Item $item) {
 		$max = $item->getMaxStackSize();
 		$count = $item->getCount();
 		
@@ -86,7 +86,7 @@ class InventoryManager {
 	
 	
 	//delete item in inventory or return false
-	public function deleteItem($item) {
+	public function deleteItem(Item $item) {
 		$count = $item->getCount();
 		$delete = 0;
 		

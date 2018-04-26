@@ -34,7 +34,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function onEnable() {
+	public function onEnable(): void {
 		@mkdir($this->getDataFolder());
 		$this->saveDefaultConfig();
 		$this->configData = $this->getConfig()->getAll();
@@ -50,14 +50,14 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function onDisable() {
+	public function onDisable(): void {
 		$this->forceStop();
 		$this->saveConfig();
 	}
 	
 	
 	
-	private function loadMessages() {
+	private function loadMessages(): void {
 		$this->updateMessages("messages.yml");
 		$config = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
 		$this->msg = new Messages($config->getAll());
@@ -112,7 +112,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function onCommand(CommandSender $player, Command $command, $label, Array $args) {
+	public function onCommand(CommandSender $player, Command $command, string $label, array $args): bool {
 		if(!$this->enable) {
 			return;
 		}
@@ -335,7 +335,7 @@ class DirectAuction extends PluginBase implements Listener {
 		$item = $inventory->getItemInHand();
 		
 		//FOR MCPE 0.12
-		/*if($item->hasCompoundTag()) {
+		if($item->hasCompoundTag()) {
 			if($count > $item->getCount()) {
 				$player->sendMessage(TextFormat::DARK_AQUA . $this->TAG . $this->msg->getMessage("warning-tag-item"));
 				return;
@@ -456,7 +456,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function auctionStop($player) {
+	public function auctionStop(Player $player) {
 		if($this->task === null) {
 			$player->sendMessage(TextFormat::DARK_AQUA . $this->TAG . $this->msg->getMessage("warning-idle"));
 			return;
@@ -500,7 +500,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function sendAuctionInfo($player) {
+	public function sendAuctionInfo(Player $player) {
 		if($this->task === null) {
 			$player->sendMessage(TextFormat::DARK_AQUA . $this->TAG . $this->msg->getMessage("warning-idle"));
 			return true;
@@ -520,7 +520,7 @@ class DirectAuction extends PluginBase implements Listener {
 			"info" => TextFormat::AQUA . $this->task["item"]->getCount() . TextFormat::DARK_AQUA
 		]));
 		
-		/*if($this->task["item"]->hasCustomName()) {
+		if($this->task["item"]->hasCustomName()) {
 			$player->sendMessage(TextFormat::DARK_AQUA . $this->TAG . $this->msg->getMessage("auction-info-custom-name", [
 				"info" => TextFormat::AQUA . $this->task["item"]->getCustomName() . TextFormat::DARK_AQUA
 			]));
@@ -601,7 +601,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	public function stringifyId($item) {
+	public function stringifyId(Item $item) {
 		if(!($item instanceof Item)) {
 			return false;
 		}
@@ -610,7 +610,7 @@ class DirectAuction extends PluginBase implements Listener {
 	
 	
 	
-	/*public function stringifyItemName($item) {
+	public function stringifyItemName($item) {
 		if($item->hasCustomName()) {
 			return $item->getCustomName();
 		}else {
@@ -634,6 +634,6 @@ class DirectAuction extends PluginBase implements Listener {
 		}else {
 			return "";
 		}
-	}*/
+	}
 }
 ?>
